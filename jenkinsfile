@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+         stages {
+        stage('Cleanup Workspace'){
+            steps {
+                script {
+                    cleanWs()
+                }
+            }
+        }
+        stage('Checkout SCM'){
+            steps {
+                git credentialsId: 'github', 
+                url: 'git@github.com:hosnikadour1/k8s-nodejs-reactjs-mongodb.git',
+                branch: 'master'
+            }
+        }
+        stage('Deploy App') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "client-app-deployment.yml", kubeconfigId: "kubeconfigites")
+          kubernetesDeploy(configs: "mongo-config.yml", kubeconfigId: "kubeconfigites")
+          kubernetesDeploy(configs: "mongo-secret.yml", kubeconfigId: "kubeconfigites")
+          kubernetesDeploy(configs: "mongo.yml", kubeconfigId: "kubeconfigites")
+          kubernetesDeploy(configs: "webapp.yml", kubeconfigId: "kubeconfigites")
+          kubernetesDeploy(configs: "ingress.yml", kubeconfigId: "kubeconfigites")
+
+        }
+      }
+    }
+
+  }
+}
+
+         
