@@ -1,13 +1,7 @@
 pipeline {
     agent any
          stages {
-        stage('Cleanup Workspace'){
-            steps {
-                script {
-                    cleanWs()
-                }
-            }
-        }
+        
         stage('Checkout SCM'){
             steps {
                 git credentialsId: 'github', 
