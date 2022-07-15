@@ -11,12 +11,12 @@ pipeline {
         stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "client-app-deployment.yml", kubeconfigId: "kubeconfigites")
-          kubernetesDeploy(configs: "mongo-config.yml", kubeconfigId: "kubeconfigites")
-          kubernetesDeploy(configs: "mongo-secret.yml", kubeconfigId: "kubeconfigites")
-          kubernetesDeploy(configs: "mongo.yml", kubeconfigId: "kubeconfigites")
-          kubernetesDeploy(configs: "webapp.yml", kubeconfigId: "kubeconfigites")
-          kubernetesDeploy(configs: "ingress.yml", kubeconfigId: "kubeconfigites")
+          kubernetesDeploy(configs: "client-app-deployment.yml", kubeconfigId: "KUBERNETES_CLUSTER_CONFIG")
+          kubernetesDeploy(configs: "mongo-config.yml", kubeconfigId: "KUBERNETES_CLUSTER_CONFIG")
+          kubernetesDeploy(configs: "mongo-secret.yml", kubeconfigId: "KUBERNETES_CLUSTER_CONFIG")
+          kubernetesDeploy(configs: "mongo.yml", kubeconfigId: "KUBERNETES_CLUSTER_CONFIG")
+          kubernetesDeploy(configs: "webapp.yml", kubeconfigId: "KUBERNETES_CLUSTER_CONFIG")
+          kubernetesDeploy(configs: "ingress.yml", kubeconfigId: "KUBERNETES_CLUSTER_CONFIG")
 
         }
       }
